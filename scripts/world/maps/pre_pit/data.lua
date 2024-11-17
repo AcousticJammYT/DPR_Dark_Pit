@@ -328,7 +328,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["cutscene"] = "pre_pit.elevator"
+            ["cutscene"] = "pre_pit.elevator",
+            ["once"] = false
           }
         }
       }
