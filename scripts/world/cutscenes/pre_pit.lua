@@ -1,4 +1,39 @@
 return {
+	elevator = function(cutscene, event)
+		ELEVATOR_TRANSITION = {
+            target_floor = 2,
+            target_dir = 1,
+            target_name = "The Dark Pit",
+            target_dest = "The Dark Pit",
+			party_data = { {}, {}, {} }
+        }
+		ELEVATOR_TRANSITION.party_data[1].x =      316
+        ELEVATOR_TRANSITION.party_data[1].y =      300
+        ELEVATOR_TRANSITION.party_data[1].facing = "up"
+        for i, chara in ipairs(Game.world.followers) do
+            ELEVATOR_TRANSITION.party_data[i+1].x =      316
+            ELEVATOR_TRANSITION.party_data[i+1].y =      300
+            ELEVATOR_TRANSITION.party_data[i+1].facing = "up"
+        end
+		cutscene:after(Game:swapIntoMod("dpr_main", false, "hub_elevator"))
+    end,
+	
+    lock = function(cutscene, event)
+		if not Game:getFlag("pit_unlocked") then
+			cutscene:text("* The area ahead of you is locked.")
+			if Game.inventory:hasItem("pit_key") then
+				cutscene:text("* The [color:yellow]Strange Key P[color:white] is reacting to the lock...")
+				cutscene:text("* Before you know it, you're unlocking the lock.")
+				Game:setFlag("pit_unlocked", true)
+				Game.inventory:removeItem("pit_key")
+				local shape = Game.world.map:getHitbox("pit_lock")
+				shape.collidable = false
+				Game.world.map:getTileLayer("LockedPit").visible = false
+				Assets.playSound("noise")
+			end
+		end
+    end,
+	
     wall = function(cutscene, event)
 		local susie = cutscene:getCharacter("susie")
 		local jamm = cutscene:getCharacter("jamm")
