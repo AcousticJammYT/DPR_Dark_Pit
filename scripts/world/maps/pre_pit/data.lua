@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 6,
-  nextobjectid = 29,
+  nextobjectid = 31,
   properties = {
     ["name"] = "Dark Pit - Entry"
   },
@@ -331,6 +331,21 @@ return {
             ["cutscene"] = "pre_pit.elevator",
             ["once"] = false
           }
+        },
+        {
+          id = 29,
+          name = "interactable",
+          type = "",
+          shape = "rectangle",
+          x = 160,
+          y = 440,
+          width = 320,
+          height = 40,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["cutscene"] = "pre_pit.entry"
+          }
         }
       }
     },
@@ -355,6 +370,19 @@ return {
           shape = "point",
           x = 320,
           y = 200,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 30,
+          name = "",
+          type = "",
+          shape = "point",
+          x = 320,
+          y = 760,
           width = 0,
           height = 0,
           rotation = 0,

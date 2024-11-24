@@ -34,7 +34,7 @@ return {
 		end
     end,
 	
-    wall = function(cutscene, event)
+    entry = function(cutscene, event)
 		local susie = cutscene:getCharacter("susie")
 		local jamm = cutscene:getCharacter("jamm")
 		local brenda = cutscene:getCharacter("brenda")
