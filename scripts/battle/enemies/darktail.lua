@@ -1,20 +1,20 @@
-local Grumbolith, super = Class(EnemyBattler)
+local Darktail, super = Class(EnemyBattler)
 
-function Grumbolith:init()
+function Darktail:init()
     super.init(self)
 
     -- Enemy name
-    self.name = "Grumbolith"
+    self.name = "Darktail"
     -- Sets the actor, which handles the enemy's sprites (see scripts/data/actors/dummy.lua)
     self:setActor("dummy")
 
     -- Enemy health
-    self.max_health = 8000
-    self.health = 8000
+    self.max_health = 35000
+    self.health = 35000
     -- Enemy attack (determines bullet damage)
-    self.attack = 9
+    self.attack = 18
     -- Enemy defense (usually 0)
-    self.defense = 2
+    self.defense = 5
     -- Enemy reward
     self.money = 100
 
@@ -28,40 +28,31 @@ function Grumbolith:init()
         "movingarena"
     }
 
-    -- Dialogue randomly displayed in the enemy's speech bubble
-    self.dialogue = {
-        "..."
-    }
-
     -- Check text (automatically has "ENEMY NAME - " at the start)
-    self.check = {"AT 9 DF 2\n* A rock monster of immense power.", "It seems you can't get anywhere without cooling it off first.", "It seems Grumbolith's heat is protecting it..."}
+    self.check = {"AT 18 DF 5\n* The eternal prisoner of the Dark Pit.", "Reality is breaking...\n* Can't let that stop you now."}
 
     -- Text randomly displayed at the bottom of the screen each turn
     self.text = {
-        "* Grumbolith heats up the battlefield.",
+        "* Darktail lets out a piercing howl.",
     }
-    -- Text displayed at the bottom of the screen when the enemy has low health
-    self.low_health_text = "* Grumbolith seems to be breaking a sweat."
-	
-	self.cstat1 = 0
-	self.cmax1 = 1
-	self.cback1 = {0, 90/255, 135/255, 1}
-	self.cfront1 = {158/255, 223/255, 1, 1}
 
-    self:registerAct("Cool", "Make\nCOLD")
-	
-	self.tags = {"Heat"}
+    -- Register act called "Smile"
+    self:registerAct("Smile")
+    -- Register party act with Ralsei called "Tell Story"
+    -- (second argument is description, usually empty)
+    self:registerAct("Tell Story", "", {"ralsei"})
 end
 
-function Grumbolith:onAct(battler, name)
-    if name == "Cool" then
-        self.cstat1 = self.cstat1 + 0.3
-		if self.cstat1 > 1 then
-			self.cstat1 = 1
-			self:addMercy(3)
-		end
+function Darktail:onAct(battler, name)
+    if name == "Smile" then
+        -- Give the enemy 100% mercy
+        self:addMercy(100)
+        -- Change this enemy's dialogue for 1 turn
+        self.dialogue_override = "... ^^"
+        -- Act text (since it's a list, multiple textboxes)
         return {
-            "* " .. battler.chara.name .. " cools Grumbolith down."
+            "* You smile.[wait:5]\n* The dummy smiles back.",
+            "* It seems the dummy just wanted\nto see you happy."
         }
 
     elseif name == "Tell Story" then
@@ -93,18 +84,12 @@ function Grumbolith:onAct(battler, name)
     return super.onAct(self, battler, name)
 end
 
-function Grumbolith:getShield()
-	return (self.cstat1 < 0.4)
-end
-
-function Grumbolith:hurt(amount, battler, on_defeat, color, show_status, attacked)
-	if self.dizzy then
-		amount = amount * 10
-	elseif self.cstat1 < 0.4 then
-		amount = amount / 10
+-- Darktail is a boss, so at minimum, one damage point.
+function Darktail:getAttackDamage(damage, battler, points)
+	if points == 0 then
+		return 0
 	end
-	amount = math.max(amount, 1)
-	super.hurt(self, amount, battler, on_defeat, color, show_status, attacked)
+    return math.max(((battler.chara:getStat("attack") * points) / 20) - (self.defense * 3), 1)
 end
 
-return Grumbolith
+return Darktail
