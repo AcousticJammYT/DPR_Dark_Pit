@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="40" tileheight="40" infinite="0" nextlayerid="6" nextobjectid="31">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="40" tileheight="40" infinite="0" nextlayerid="6" nextobjectid="32">
  <editorsettings>
   <export target="data.lua" format="lua"/>
  </editorsettings>
@@ -89,6 +89,7 @@
   <object id="29" name="script" x="160" y="418" width="320" height="40">
    <properties>
     <property name="cutscene" value="pre_pit.entry"/>
+    <property name="once" type="bool" value="false"/>
    </properties>
   </object>
  </objectgroup>
@@ -96,7 +97,10 @@
   <object id="2" name="spawn" x="320" y="200">
    <point/>
   </object>
-  <object id="30" x="320" y="760">
+  <object id="30" x="320" y="720">
+   <point/>
+  </object>
+  <object id="31" name="spawnpoint" x="500" y="200">
    <point/>
   </object>
  </objectgroup>

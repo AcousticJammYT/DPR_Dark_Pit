@@ -2,6 +2,8 @@ local Dummy, super = Class(Encounter)
 
 function Dummy:init()
     super.init(self)
+	
+	self.mascot = "dummy"
 
     -- Text displayed at the bottom of the screen at the start of the encounter
     self.text = "* The tutorial begins...?"

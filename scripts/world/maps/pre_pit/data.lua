@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 6,
-  nextobjectid = 31,
+  nextobjectid = 32,
   properties = {
     ["name"] = "Dark Pit - Entry"
   },
@@ -344,7 +344,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["cutscene"] = "pre_pit.entry"
+            ["cutscene"] = "pre_pit.entry",
+            ["once"] = false
           }
         }
       }
@@ -382,7 +383,20 @@ return {
           type = "",
           shape = "point",
           x = 320,
-          y = 760,
+          y = 720,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 31,
+          name = "spawnpoint",
+          type = "",
+          shape = "point",
+          x = 500,
+          y = 200,
           width = 0,
           height = 0,
           rotation = 0,

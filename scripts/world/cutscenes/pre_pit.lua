@@ -63,8 +63,27 @@ return {
 		cutscene:text("* Will you enter the pit?")
 		if cutscene:choicer({"Yes", "No"}) == 1 then
 			-- TODO: Code entry to the pit.
+			cutscene:detachFollowers()
+			cutscene:detachCamera()
+			cutscene:setSprite(Game.world.player, "landed_1")
+			cutscene:wait(1/10)
+			Assets.playSound("jump")
+			Game.world.player:setLayer(Game.world.player.layer + 1)
+			cutscene:setAnimation(Game.world.player, {"ball", 1/10, true})
+			cutscene:wait(cutscene:slideTo(Game.world.player, Game.world.player.x, Game.world.player.y - 80, 0.5, "out-quad"))
+			cutscene:wait(cutscene:slideTo(Game.world.player, Game.world.player.x, 760, 0.7, "in-quad"))
+			cutscene:wait(cutscene:fadeOut(0.4))
+            for i = 0,5 do
+                cutscene:playSound("impact", (1 - (i/10)) ^ (4) )
+                cutscene:wait(0.2)
+            end
+			cutscene:loadMap("area_1")
+			cutscene:wait(1)
+			cutscene:wait(cutscene:fadeIn(0.4))
+			Game:setFlag("pit_floorcount", 1)
 		else
 			cutscene:text("* You decide you're not ready for the fall.")
+			cutscene:wait(cutscene:walkTo(Game.world.player, Game.world.player.x, Game.world.player.y - 20, 0.5))
 		end
     end
 }

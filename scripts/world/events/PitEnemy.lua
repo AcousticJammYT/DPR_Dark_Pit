@@ -1,9 +1,21 @@
 local PitEnemy, super = Class(ChaserEnemy, "pit_enemy")
 
 function PitEnemy:init(data)
-    super.init(self, data.properties.actor, data.x, data.y, data.properties)
+    super.init(self, "dummy", data.x, data.y, data.properties)
 	
 	self.encounter = "battle_" .. Game:getFlag("pit_floorcount", 1)
+	
+	local encounter_instance = Registry.createEncounter(self.encounter)
+	
+	self:setActor(encounter_instance.mascot)
+	
+	self.sprite.aura = true
+	
+	if data.properties["aura"] == nil then
+        self.sprite.aura = Game:getConfig("enemyAuras")
+    else
+        self.sprite.aura = data.properties["aura"]
+    end
 end
 
 function PitEnemy:onCollide(player)

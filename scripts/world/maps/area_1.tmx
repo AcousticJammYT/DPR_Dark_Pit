@@ -77,7 +77,7 @@
   </object>
   <object id="5" name="pit_enemy" x="320" y="320">
    <properties>
-    <property name="actor" value="dummy"/>
+    <property name="aura" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
