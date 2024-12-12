@@ -117,6 +117,7 @@
     <property name="text2" value="* Firstly, all ACTs and such are targeted to the boss."/>
     <property name="text3" value="* Secondly, all bosses have an ultimate attack."/>
     <property name="text4" value="* After this attack, the boss will be [color:green]DIZZY[color:white] for a turn or two."/>
+    <property name="text5" value="* Lastly, bosses are very vulnerable when they're [color:green]DIZZY[color:white]."/>
    </properties>
   </object>
   <object id="7" name="script" x="120" y="480" width="120">

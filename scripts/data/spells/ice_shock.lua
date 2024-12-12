@@ -77,10 +77,14 @@ function spell:onCast(user, target)
         target:hurt(damage, user, function() target:freeze() end)
 		
 		if target.tags and Utils.containsValue(target.tags, "Heat") then
-			target.cstat1 = target.cstat1 + 0.3
+			target.cstat1 = target.cstat1 + 0.6
 			if target.cstat1 > 1 then
 				target.cstat1 = 1
-				target:addMercy(3)
+				if self.dizzy then
+					self:addMercy(12)
+				else
+					self:addMercy(2)
+				end
 			end
 		end
 

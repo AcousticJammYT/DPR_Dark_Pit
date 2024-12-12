@@ -282,7 +282,8 @@ return {
             ["text1"] = "* Bosses, in this DLC, act a little differently than most enemies.",
             ["text2"] = "* Firstly, all ACTs and such are targeted to the boss.",
             ["text3"] = "* Secondly, all bosses have an ultimate attack.",
-            ["text4"] = "* After this attack, the boss will be [color:green]DIZZY[color:white] for a turn or two."
+            ["text4"] = "* After this attack, the boss will be [color:green]DIZZY[color:white] for a turn or two.",
+            ["text5"] = "* Lastly, bosses are very vulnerable when they're [color:green]DIZZY[color:white]."
           }
         },
         {

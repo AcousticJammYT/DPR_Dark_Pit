@@ -39,16 +39,20 @@ function Grumbolith:init()
     -- Text randomly displayed at the bottom of the screen each turn
     self.text = {
         "* Grumbolith heats up the battlefield.",
+        "* Grumbolith stands perfectly still, almost like a statue.",
     }
     -- Text displayed at the bottom of the screen when the enemy has low health
     self.low_health_text = "* Grumbolith seems to be breaking a sweat."
+	
+	self.tired_percentage = 0
+    self.low_health_percentage = 0.1
 	
 	self.cstat1 = 0
 	self.cmax1 = 1
 	self.cback1 = {0, 90/255, 135/255, 1}
 	self.cfront1 = {158/255, 223/255, 1, 1}
 
-    self:registerAct("Cool", "Make\nCOLD")
+    self:registerShortAct("Cool", "Make\nCOLD")
 	
 	self.tags = {"Heat"}
 end
@@ -58,34 +62,15 @@ function Grumbolith:onAct(battler, name)
         self.cstat1 = self.cstat1 + 0.3
 		if self.cstat1 > 1 then
 			self.cstat1 = 1
-			self:addMercy(3)
+			if self.dizzy then
+				self:addMercy(6)
+			else
+				self:addMercy(1)
+			end
 		end
         return {
             "* " .. battler.chara.name .. " cools Grumbolith down."
         }
-
-    elseif name == "Tell Story" then
-        -- Loop through all enemies
-        for _, enemy in ipairs(Game.battle.enemies) do
-            -- Make the enemy tired
-            enemy:setTired(true)
-        end
-        return "* You and Ralsei told the dummy\na bedtime story.\n* The enemies became [color:blue]TIRED[color:reset]..."
-
-    elseif name == "Standard" then --X-Action
-        -- Give the enemy 50% mercy
-        self:addMercy(50)
-        if battler.chara.id == "ralsei" then
-            -- R-Action text
-            return "* Ralsei bowed politely.\n* The dummy spiritually bowed\nin return."
-        elseif battler.chara.id == "susie" then
-            -- S-Action: start a cutscene (see scripts/battle/cutscenes/dummy.lua)
-            Game.battle:startActCutscene("dummy", "susie_punch")
-            return
-        else
-            -- Text for any other character (like Noelle)
-            return "* "..battler.chara:getName().." straightened the\ndummy's hat."
-        end
     end
 
     -- If the act is none of the above, run the base onAct function
@@ -93,8 +78,36 @@ function Grumbolith:onAct(battler, name)
     return super.onAct(self, battler, name)
 end
 
+function Grumbolith:onShortAct(battler, name)
+    if name == "Cool" then
+        self.cstat1 = self.cstat1 + 0.3
+		if self.cstat1 > 1 then
+			self.cstat1 = 1
+			if self.dizzy then
+				self:addMercy(6)
+			else
+				self:addMercy(1)
+			end
+			return {
+				"* " .. battler.chara.name .. " overcools Grumbolith."
+			}
+		end
+        return {
+            "* " .. battler.chara.name .. " cools Grumbolith down."
+        }
+    end
+end
+
+function Grumbolith:isXActionShort(battler)
+    return true
+end
+
 function Grumbolith:getShield()
 	return (self.cstat1 < 0.4)
+end
+
+function Grumbolith:getXAction(battler)
+    return "Cool"
 end
 
 function Grumbolith:hurt(amount, battler, on_defeat, color, show_status, attacked)
