@@ -50,7 +50,7 @@ return {
 				cutscene:text("* I wonder how far deep this hole goes?", "neutral", "jamm")
 				cutscene:text("* I mean... If we fell in...", "nervous_left", "jamm")
 				if brenda then
-					cutscene:text("* Would we be able to come back up?", "worried", "jamm", {reactions = {
+					cutscene:text("* Would we be able to come back up?[react:1]", "worried", "jamm", {reactions = {
 						{"There's a bin\nright there...", "right", "bottom", "neutral", "brenda"}
 					}})
 				else
