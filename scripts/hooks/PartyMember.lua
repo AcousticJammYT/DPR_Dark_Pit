@@ -195,7 +195,7 @@ function PartyMember:getSkills()
 		end
 		return skills
 	else
-		super.getSkills(self)
+		return super.getSkills(self)
 	end
 end
 

@@ -69,7 +69,7 @@ return {
 			cutscene:wait(1/10)
 			Assets.playSound("jump")
 			Game.world.player:setLayer(Game.world.player.layer + 1)
-			cutscene:setAnimation(Game.world.player, {"ball", 1/10, true})
+			cutscene:setAnimation(Game.world.player, {"ball", 1/15, true})
 			cutscene:wait(cutscene:slideTo(Game.world.player, Game.world.player.x, Game.world.player.y - 80, 0.5, "out-quad"))
 			cutscene:wait(cutscene:slideTo(Game.world.player, Game.world.player.x, 760, 0.7, "in-quad"))
 			cutscene:wait(cutscene:fadeOut(0.4))
@@ -81,6 +81,7 @@ return {
 			cutscene:wait(1)
 			cutscene:wait(cutscene:fadeIn(0.4))
 			Game:setFlag("pit_floorcount", 1)
+			Game:setFlag("area_1_discovery", false)
 		else
 			cutscene:text("* You decide you're not ready for the fall.")
 			cutscene:wait(cutscene:walkTo(Game.world.player, Game.world.player.x, Game.world.player.y - 20, 0.5))
