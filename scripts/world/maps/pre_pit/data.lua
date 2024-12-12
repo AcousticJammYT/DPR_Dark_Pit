@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.10.1",
+  tiledversion = "1.11.0",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -334,11 +334,11 @@ return {
         },
         {
           id = 29,
-          name = "interactable",
+          name = "script",
           type = "",
           shape = "rectangle",
           x = 160,
-          y = 440,
+          y = 418,
           width = 320,
           height = 40,
           rotation = 0,

@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.10.1",
+  tiledversion = "1.11.0",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 8,
-  nextobjectid = 5,
+  nextobjectid = 6,
   properties = {},
   tilesets = {
     {
@@ -203,6 +203,21 @@ return {
           visible = true,
           properties = {
             ["cutscene"] = "common.floor_count"
+          }
+        },
+        {
+          id = 5,
+          name = "pit_enemy",
+          type = "",
+          shape = "point",
+          x = 320,
+          y = 320,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["actor"] = "dummy"
           }
         }
       }

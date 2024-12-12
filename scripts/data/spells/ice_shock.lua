@@ -80,10 +80,10 @@ function spell:onCast(user, target)
 			target.cstat1 = target.cstat1 + 0.6
 			if target.cstat1 > 1 then
 				target.cstat1 = 1
-				if self.dizzy then
-					self:addMercy(12)
+				if target.dizzy then
+					target:addMercy(12)
 				else
-					self:addMercy(2)
+					target:addMercy(2)
 				end
 			end
 		end
