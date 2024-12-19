@@ -63,9 +63,9 @@ function Grumbolith:onAct(battler, name)
 		if self.cstat1 > 1 then
 			self.cstat1 = 1
 			if self.dizzy then
-				self:addMercy(6)
+				self:addMercy(9)
 			else
-				self:addMercy(1)
+				self:addMercy(2)
 			end
 		end
         return {
@@ -84,9 +84,9 @@ function Grumbolith:onShortAct(battler, name)
 		if self.cstat1 > 1 then
 			self.cstat1 = 1
 			if self.dizzy then
-				self:addMercy(6)
+				self:addMercy(9)
 			else
-				self:addMercy(1)
+				self:addMercy(2)
 			end
 			return {
 				"* " .. battler.chara.name .. " overcools Grumbolith."

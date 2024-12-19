@@ -24,4 +24,10 @@ function Boss:init()
 	self.xact_name = "Cool"
 end
 
+function Boss:onTurnStart()
+	if self.boss.cstat1 then
+		self.boss.cstat1 = math.max(self.boss.cstat1 - 0.3, 0)
+	end
+end
+
 return Boss
