@@ -3,6 +3,9 @@
  <editorsettings>
   <export target="area_1.lua" format="lua"/>
  </editorsettings>
+ <properties>
+  <property name="music" value="pit"/>
+ </properties>
  <tileset firstgid="1" source="../tilesets/pit_area_1.tsx"/>
  <layer id="1" name="Tile Layer 1" width="16" height="16">
   <data encoding="csv">

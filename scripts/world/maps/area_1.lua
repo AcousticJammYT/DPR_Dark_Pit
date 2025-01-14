@@ -11,7 +11,9 @@ return {
   tileheight = 40,
   nextlayerid = 8,
   nextobjectid = 6,
-  properties = {},
+  properties = {
+    ["music"] = "pit"
+  },
   tilesets = {
     {
       name = "pit_area_1",
