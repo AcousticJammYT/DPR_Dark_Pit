@@ -6,7 +6,7 @@ function Grumbolith:init()
     -- Enemy name
     self.name = "Grumbolith"
     -- Sets the actor, which handles the enemy's sprites (see scripts/data/actors/dummy.lua)
-    self:setActor("dummy")
+    self:setActor("grumbolith")
 
     -- Enemy health
     self.max_health = 8000

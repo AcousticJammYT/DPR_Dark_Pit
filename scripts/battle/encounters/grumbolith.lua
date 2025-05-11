@@ -12,7 +12,7 @@ function Boss:init()
     self.background = true
 
     -- Add the boss enemy to the encounter
-    self.boss = self:addEnemy("grumbolith")
+    self.boss = self:addEnemy("grumbolith", 500, 320)
 	
 	-- Since this is a boss encounter, this is the name that will appear on the top.
 	self.boss_name = "Grumbolith, Warden of the Earth"
